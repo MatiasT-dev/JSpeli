@@ -2,18 +2,86 @@
 <html>
 <head>
     <title>javaSpeli</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <style>
-        .pallo {
-            width: 20px;
-            height: 20px;
-            background-color: white;
+        canvas {
+            background: color #eeeeee; ;
+            border: 2px solid #d3d3d3;
         }
+
+
     </style>
     
 </head>
-  <body style="background-color: black;">
+  <body style="background-color: black;" onload="aloitapeli()">
+   
+    <script>
 
-      <div class="pallo"></div>
+        var pelipala;
+        var peliesto;
+
+        function aloitapeli() {
+            peliarena.start();
+            pelipala = new osansa(30, 30, "white", 10, 120);
+            peliesto = new osansa(10, 200, "white", 300, 120);
+        }
+
+        var peliarena = {
+            canvas : document.createElement("canvas"),
+            start : function(){
+
+            this.canvas.width = 480;
+            this.canvas.height = 270;
+            this.context = this.canvas.getContext("2d");
+            document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+            this.interval = setInterval(paivitapelia, 20);
+            window.addEventListener('keydown', function (e) {
+                peliarena.key = e.keyCode;
+            })
+            window.addEventListener('keyup', function (e) {
+                peliarena.key = false;
+            })
+        },
+        clear : function() {
+            this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        }
+
+    }
+
+    function osansa(width, height, color, x, y) {
+        this.width = width;
+        this.height = height;
+        this.nopeusX = 0;
+        this.nopeusY = 0;  
+        this.x = x;
+        this.y = y;
+        this.updaid = function() {
+          ctx = peliarena.context;
+         ctx.fillStyle = color;
+         ctx.fillRect(this.x, this.y, this.width, this.height);
+        }
+        this.newpai = function(){
+            this.x += this.nopeusX;
+            this.y += this.nopeusY;
+        }
+    }
+
+    function paivitapelia() {
+        peliarena.clear();
+        pelipala.nopeusX = 0;
+        pelipala.nopeusY = 0;
+        if (peliarena.key && peliarena.key == 37) {pelipala.nopeusX = -1; }
+        if (peliarena.key && peliarena.key == 39) {pelipala.nopeusX = 1; }
+        if (peliarena.key && peliarena.key == 38) {pelipala.nopeusY = -1; }
+        if (peliarena.key && peliarena.key == 40) {pelipala.nopeusY = 1; }
+        peliesto.updaid();
+        pelipala.newpai();
+        pelipala.updaid();
+    }
+
+    </script>
+    
+
   </body>
 </html>
