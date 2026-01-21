@@ -25,8 +25,8 @@
 
         function aloitapeli() {
             peliarena.start();
-            pelipala = new osansa(30, 30 "white", 10, 120);
-            peliesto = new osansa(10, 200 "white", 300, 120);
+            pelipala = new osansa(30, 30, "white", 10, 120);
+            peliesto = new osansa(10, 200, "white", 300, 120);
         }
 
         var peliarena = {
@@ -107,12 +107,12 @@
             paivitapiste();
         }
 
-        
+       
             if (
-                pelipala.x + pelipala.width > peliesto.x ||
-                pelipala.x < peliesto.x + peliesto.width ||
-                pelipala.y + pelipala.height > peliesto.y ||
-                pelipala.y < peliesto.height + peliesto.y
+                osansa.x + osansa.width > osansa.x ||
+                osansa.x < osansa.x + osansa.width ||
+               osansa.y + osansa.height > peliesto.y ||
+                osansa.y < osansa.height + osansa.y
             ) {
               lisaapiste();  
             } else {
