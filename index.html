@@ -107,6 +107,17 @@
             paivitapiste();
         }
 
+        function tormays(pelipala, peliesto) {
+            if (
+                pelipala.x + pelipala.widht >= peliesto.x &&
+                pelipala.x <= peliesto.x + peliesto.widht &&
+                pelipala.y + pelipala.height >= peliesto.y &&
+                pelipala.y <= peliesto.height + peliesto.y
+            ) {
+                lisaapiste();
+            }
+        }
+
     </script>
 
       <p id="piste" style="font-size:40px; color: white;">0</p>
