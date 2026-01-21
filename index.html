@@ -22,14 +22,14 @@
         
         var pelipala;
         var peliesto;
-
+// aloitaa pelin
         function aloitapeli() {
             peliarena.start();
             pelipala = new osansa(30, 30, "white", 10, 120);
             peliesto = new osansa(10, 200, "white", 300, 120);
             tormaus(pelipala, peliesto);
         }
-
+//pelin areena missä pelaja liikuu
         var peliarena = {
             canvas : document.createElement("canvas"),
             start : function(){
@@ -51,7 +51,7 @@
         }
 
     }
-
+//osat ja tasot
     function osansa(width, height, color, x, y) {
         this.width = width;
         this.height = height;
@@ -69,7 +69,7 @@
             this.y += this.nopeusY;
         }
     }
-
+// liikuminen
     function paivitapelia() {
         peliarena.clear();
         pelipala.nopeusX = 0;
@@ -82,24 +82,30 @@
         pelipala.newpai();
         pelipala.updaid();
     }
+        //pisten päivityksen
         function paivitapiste() {
             document.getElementById("piste").innerHTML = piste;
         }
+        //lisää pisteitä
         function lisaapiste() {
             piste++;
             paivitapiste();
         }
+        //pisteen vähetäminen
         function pienenapiste() {
             piste--;
             paivitapiste();
         }
+        //pisteiden aloitaa alusta
         function resepiste() {
         piste = 0;
         paivitapiste();
         }
+        //pisteiden talentamiseen
         function talepistee() {
             localStorage.setItem("piste", piste);
         }
+        //pisteiden uudelen ladatumiseen viimeksi talentuksesta
         function uudelenpistee() {
             let tale = localStorage.setItem("piste");
             if (tale !== null) {
@@ -114,9 +120,9 @@
             peliesto = new osansa(10, 200, "white", 300, 120);
             
                if (
-                pelipala.x + pelipala.width > peliesto.x ||
-                pelipala.x < peliesto.x + peliesto.width ||
-               pelipala.y + pelipala.height > peliesto.y ||
+                pelipala.x + pelipala.width > peliesto.x &&
+                pelipala.x < peliesto.x + peliesto.width &&
+               pelipala.y + pelipala.height > peliesto.y &&
                 pelipala.y < peliesto.height + peliesto.y
             ) {
               lisaapiste();  
