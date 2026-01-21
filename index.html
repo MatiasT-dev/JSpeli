@@ -20,13 +20,13 @@
 
         let piste = 0;
         
-        var pelipala;
-        var peliesto;
+        var pelipala = {width: 30,height: 30,color: "white",x: 10,y: 120};
+        var peliesto = {width: 10,height: 200,color: "white",x: 300,y: 120};
 
         function aloitapeli() {
             peliarena.start();
-            pelipala = new osansa(30, 30, "white", 10, 120);
-            peliesto = new osansa(10, 200, "white", 300, 120);
+            pelipala = new pelipala;
+            peliesto = new peliesto;
         }
 
         var peliarena = {
@@ -109,10 +109,10 @@
 
         
             if (
-                pelipala.osansa.x + pelipala.osansa.width > peliesto.osansa.x ||
-                pelipala.osansa.x < peliesto.osansa.x + peliesto.osansa.width ||
-                pelipala.osansa.y + pelipala.osansa.height > peliesto.osansa.y ||
-                pelipala.osansa.y < peliesto.osansa.height + peliesto.osansa.y
+                pelipala.x + pelipala.width > peliesto.x ||
+                pelipala.x < peliesto.x + peliesto.width ||
+                pelipala.y + pelipala.height > peliesto.y ||
+                pelipala.y < peliesto.height + peliesto.y
             ) {
               lisaapiste();  
             } else {
