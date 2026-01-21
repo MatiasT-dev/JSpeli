@@ -27,7 +27,7 @@
             peliarena.start();
             pelipala = new osansa(30, 30, "white", 10, 120);
             peliesto = new osansa(20, 20, "green", 300, 120);
-            tormaus(pelipala, peliesto);
+            
         }
 //pelin areena missä pelaja liikuu
         var peliarena = {
@@ -79,9 +79,9 @@
             var senylos = this.y;
             var senalas = this.y + (this.height);
             var osunut = true;
-            if ((munalas < senylos) &&
-               (munylos > senalas) &&
-               (munoike < senvase) &&
+            if ((munalas < senylos) ||
+               (munylos > senalas) ||
+               (munoike < senvase)||
                (munvase > senoike)) { osunut = false;
             }
             return osunut;
