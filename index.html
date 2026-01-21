@@ -118,6 +118,10 @@
             
             pelipala = new osansa(30, 30, "white", 10, 120);
             peliesto = new osansa(10, 200, "white", 300, 120);
+
+                var position = element.getBoundingClientRect();
+                var x = position.left;
+                var y = position.top;
             
                if (pelipala.position.x - pelipala.radius <= peliesto.position.x + peliesto.width &&
                    pelipala.position.x + pelipala.radius >= peliesto.position.x &&
