@@ -109,14 +109,19 @@
 
         function tormays(pelipala, peliesto) {
             if (
-                pelipala.x + pelipala.widht >= peliesto.x &&
-                pelipala.x <= peliesto.x + peliesto.widht &&
-                pelipala.y + pelipala.height >= peliesto.y &&
-                pelipala.y <= peliesto.height + peliesto.y
+                pelipala.x + pelipala.widht > peliesto.x ||
+                pelipala.x < peliesto.x + peliesto.widht ||
+                pelipala.y + pelipala.height > peliesto.y ||
+                pelipala.y < peliesto.height + peliesto.y
             ) {
-                lisaapiste();
+              lisaapiste();  
+            } else {
+                console.log("no colosion");
             }
+            
+            
         }
+        
 
     </script>
 
