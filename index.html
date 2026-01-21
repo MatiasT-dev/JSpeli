@@ -20,13 +20,13 @@
 
         let piste = 0;
         
-        var pelipala = {width: 30,height: 30,color: "white",x: 10,y: 120};
-        var peliesto = {width: 10,height: 200,color: "white",x: 300,y: 120};
+        var pelipala;
+        var peliesto;
 
         function aloitapeli() {
             peliarena.start();
-            pelipala = new pelipala;
-            peliesto = new peliesto;
+            pelipala = new osansa(30, 30 "white", 10, 120);
+            peliesto = new osansa(10, 200 "white", 300, 120);
         }
 
         var peliarena = {
