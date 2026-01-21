@@ -122,8 +122,9 @@
                 
                 var element = document.querySelector("canvas");
                 var position = element.getBoundingClientRect();
-                var x = position.left;
-                var y = position.top;
+                this.x = x;
+                this.y = y;
+                 
             
                if (pelipala.position.x - pelipala.radius <= peliesto.position.x + peliesto.width &&
                    pelipala.position.x + pelipala.radius >= peliesto.position.x &&
