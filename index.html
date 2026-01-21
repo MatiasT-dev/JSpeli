@@ -18,6 +18,8 @@
    
     <script>
 
+        let piste = 0;
+        
         var pelipala;
         var peliesto;
 
@@ -79,6 +81,31 @@
         pelipala.newpai();
         pelipala.updaid();
     }
+        function paivitapiste() {
+            document.getElementById("piste").innerHTML = piste;
+        }
+        function lisaapiste() {
+            piste++;
+            paivitapiste();
+        }
+        function pienenapiste() {
+            piste--;
+            paivitapiste();
+        }
+        function resepiste() {
+        piste = 0;
+        paivitapiste();
+        }
+        function talepistee() {
+            localStorage.setItem("piste", piste);
+        }
+        function uudelenpistee() {
+            let tale = localStorage.setItem("piste");
+            if (tale !== null) {
+                piste = Number(tale);
+            }
+            paivitapiste();
+        }
 
     </script>
 
