@@ -119,11 +119,10 @@
             pelipala = new osansa(30, 30, "white", 10, 120);
             peliesto = new osansa(10, 200, "white", 300, 120);
             
-               if (
-                pelipala.x + pelipala.width > peliesto.x &&
-                pelipala.x < peliesto.x + peliesto.width &&
-               pelipala.y + pelipala.height > peliesto.y &&
-                pelipala.y < peliesto.height + peliesto.y
+               if (pelipala.x < peliesto.x + peliesto.width &&
+                   pelipala.x + pelipala.width > peliesto.x &&
+                   pelipala.y < peliesto.y + peliesto.height &&
+                   pelipala.y + pelipala.height > peliesto.y
             ) {
               lisaapiste();  
             } else {
