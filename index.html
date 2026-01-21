@@ -48,7 +48,9 @@
         },
         clear : function() {
             this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        }
+        } stop : function() {
+        clearInterval(this.interval);
+    }
 
     }
 //osat ja tasot
@@ -68,9 +70,30 @@
             this.x += this.nopeusX;
             this.y += this.nopeusY;
         }
+        this.osu = function(toinenta) {
+            var munvase = this.x;
+            var munoike = this.x + (this.width);
+            var munylos = this.y;
+            var munalas = this.y + (this.height);
+            var senvase = this.x;
+            var senoike = this.x + (this.width);
+            var senylos = this.y;
+            var senalas = this.y + (this.height);
+            var osunut = true;
+            if ((munalas < senylos) ||
+               (munylos > senalas) ||
+               (munoike < senvase) ||
+               (munvase > senoike)) { osunut = false;
+            }
+            return osunut;
+        }
     }
 // liikuminen
     function paivitapelia() {
+        if (pelipala.osu(peliesto)){
+            lisaapiste();
+        }
+        
         peliarena.clear();
         pelipala.nopeusX = 0;
         pelipala.nopeusY = 0;
@@ -114,28 +137,6 @@
             paivitapiste();
         }
 
-           function tormaus(pelipala, peliesto) {
-            
-            pelipala = new osansa(30, 30, "white", 10, 120);
-            peliesto = new osansa(10, 200, "white", 300, 120);
-
-                
-                var element = document.querySelector("canvas");
-                var position = element.getBoundingClientRect();
-                this.x = x;
-                this.y = y;
-                 
-            
-               if (pelipala.position.x - pelipala.radius <= peliesto.position.x + peliesto.width &&
-                   pelipala.position.x + pelipala.radius >= peliesto.position.x &&
-                   pelipala.position.y - pelipala.radius <= peliesto.position.y + peliesto.height &&
-                   pelipala.position.y + pelipala.radius >= peliesto.position.y
-            ) {
-              lisaapiste();  
-            } else {
-                console.log("no colosion");
-            }
-           }
             
         
         
