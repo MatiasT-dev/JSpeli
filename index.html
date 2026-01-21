@@ -79,9 +79,9 @@
             var senylos = this.y;
             var senalas = this.y + (this.height);
             var osunut = true;
-            if ((munalas < senylos) ||
-               (munylos > senalas) ||
-               (munoike < senvase) ||
+            if ((munalas < senylos) &&
+               (munylos > senalas) &&
+               (munoike < senvase) &&
                (munvase > senoike)) { osunut = false;
             }
             return osunut;
