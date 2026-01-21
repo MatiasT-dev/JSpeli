@@ -27,6 +27,7 @@
             peliarena.start();
             pelipala = new osansa(30, 30, "white", 10, 120);
             peliesto = new osansa(10, 200, "white", 300, 120);
+            turmaus(pelipala, peliesto);
         }
 
         var peliarena = {
@@ -110,7 +111,7 @@
            function tormaus(pelipala, peliesto) {
             
             pelipala = new osansa(30, 30, "white", 10, 120);
-            peliesto = new osansa(10, 200, "white", 300, 120)
+            peliesto = new osansa(10, 200, "white", 300, 120);
             
                if (
                 pelipala.x + pelipala.width > peliesto.x ||
