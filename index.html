@@ -138,7 +138,7 @@
         }
         //pisteiden uudelen ladatumiseen viimeksi talentuksesta
         function uudelenpistee() {
-            let tale = localStorage.setItem("piste");
+            let tale = localStorage.getItem("piste");
             if (tale !== null) {
                 piste = Number(tale);
             }
