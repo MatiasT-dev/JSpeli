@@ -72,6 +72,21 @@
         this.newpai = function(){
             this.x += this.nopeusX;
             this.y += this.nopeusY;
+            this.seinao();
+            this.latia();
+        }
+        this.seinao() = function() {
+            var seinaosu = peliarena.canvas.width - this.width;
+            if (this.x > seinaosu) {
+                this.x = seinaosu;
+            }
+        
+        }
+        this.latia() = function() {
+            var latiaosu = peliarena.canvas.height - this.height;
+            if (this.y > latiaosu) {
+                this.y = latiaosu;
+            }
         }
         //pelajan ja kuution törmäksen havaintoi koodi
         this.osu = function(toinenta) {
