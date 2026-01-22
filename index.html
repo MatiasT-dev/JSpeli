@@ -26,6 +26,7 @@
         function aloitapeli() {
             peliarena.start();
             pelipala = new osansa(30, 30, "white", 10, 120);
+            //peli alkaa ja kuutio alkavat levittä 
             peliesto = new osansa(20, 20, "green", Math.floor(Math.random() * 480) + 9, Math.floor(Math.random() * 265) + 9);
             
         }
@@ -69,6 +70,7 @@
             this.x += this.nopeusX;
             this.y += this.nopeusY;
         }
+        //pelajan ja kuution törmäksen havaintoi koodi
         this.osu = function(toinenta) {
             var munvase = this.x;
             var munoike = this.x + (this.width);
@@ -88,19 +90,25 @@
             return osunut;
         }
     }
-// liikuminen
+//pelin, pelajan ja kuution päivitäminen
     function paivitapelia() {
+        //kun pelaja kostkee kuution niin kuutio vaihtaa paikaa ja pelaja saa pisteen
         if (pelipala.osu(peliesto)){
            lisaapiste();
+            
             peliesto = new osansa(20, 20, "green", Math.floor(Math.random() * 480) + 9, Math.floor(Math.random() * 265) + 9);
         }
+
+        
         peliarena.clear();
+        // liikuminen nuoli laskimilla
         pelipala.nopeusX = 0;
         pelipala.nopeusY = 0;
-        if (peliarena.key && peliarena.key == 37) {pelipala.nopeusX = -1; }
-        if (peliarena.key && peliarena.key == 39) {pelipala.nopeusX = 1; }
-        if (peliarena.key && peliarena.key == 38) {pelipala.nopeusY = -1; }
-        if (peliarena.key && peliarena.key == 40) {pelipala.nopeusY = 1; }
+        if (peliarena.key && peliarena.key == 37) {pelipala.nopeusX = -2; }
+        if (peliarena.key && peliarena.key == 39) {pelipala.nopeusX = 2; }
+        if (peliarena.key && peliarena.key == 38) {pelipala.nopeusY = -2; }
+        if (peliarena.key && peliarena.key == 40) {pelipala.nopeusY = 2; }
+        //pelajan ja kuution päivitys
         peliesto.updaid();
         pelipala.newpai();
         pelipala.updaid();
@@ -142,8 +150,8 @@
         
 
     </script>
-
+    <!--pisteen laskuri ja debug testi-->
       <p id="piste" style="font-size:40px; color: white;">0</p>
-    <button onclick="lisaapiste()" style="color: white;">+</button>
+    <button onclick="lisaapiste()">+</button>
   </body>
 </html>
