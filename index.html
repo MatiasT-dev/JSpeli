@@ -26,7 +26,7 @@
         function aloitapeli() {
             peliarena.start();
             pelipala = new osansa(30, 30, "white", 10, 120);
-            peliesto = new osansa(20, 20, "green", 300, 120);
+            peliesto = new osansa(20, 20, "green", Maht.floor(Maht.random() * 480) + 9, Maht.floor(Maht.random() * 270) + 9);
             
         }
 //pelin areena missä pelaja liikuu
