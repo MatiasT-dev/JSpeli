@@ -92,7 +92,7 @@
     function paivitapelia() {
         if (pelipala.osu(peliesto)){
            lisaapiste();
-            peliesto.clear();
+            delete peliesto;
         }
         peliarena.clear();
         pelipala.nopeusX = 0;
