@@ -74,15 +74,16 @@
             var munoike = this.x + (this.width);
             var munylos = this.y;
             var munalas = this.y + (this.height);
-            var senvase = this.x;
-            var senoike = this.x + (this.width);
-            var senylos = this.y;
-            var senalas = this.y + (this.height);
+            var senvase = toinenta.x;
+            var senoike = toinenta.x + (toinenta.width);
+            var senylos = toinenta.y;
+            var senalas = toinenta.y + (toinenta.height);
             var osunut = true;
             if ((munalas < senylos) ||
                (munylos > senalas) ||
                (munoike < senvase)||
-               (munvase > senoike)) { lisaapiste();
+               (munvase > senoike)) { 
+                osunut = false;
             }
             return osunut;
         }
@@ -90,7 +91,7 @@
 // liikuminen
     function paivitapelia() {
         if (pelipala.osu(peliesto)){
-           console.log("piste")
+           lisaapiste();
         }
         peliarena.clear();
         pelipala.nopeusX = 0;
