@@ -20,7 +20,7 @@
   <body style="background-color: black;" onload="aloitapeli()">
    
     <script>
-
+        let nopeus = 1;
         let piste = 0;
         
         var pelipala;
@@ -132,6 +132,7 @@
            lisaapiste();
             
             peliesto = new osansa(20, 20, "green", Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
+            nopeus += 1;
         }
 
         
@@ -139,10 +140,10 @@
         // liikuminen nuoli laskimilla
         pelipala.nopeusX = 0;
         pelipala.nopeusY = 0;
-        if (peliarena.key && peliarena.key == 37) {pelipala.nopeusX = -2; }
-        if (peliarena.key && peliarena.key == 39) {pelipala.nopeusX = 2; }
-        if (peliarena.key && peliarena.key == 38) {pelipala.nopeusY = -2; }
-        if (peliarena.key && peliarena.key == 40) {pelipala.nopeusY = 2; }
+        if (peliarena.key && peliarena.key == 37) {pelipala.nopeusX = -nopeus; }
+        if (peliarena.key && peliarena.key == 39) {pelipala.nopeusX = nopeus; }
+        if (peliarena.key && peliarena.key == 38) {pelipala.nopeusY = -nopeus; }
+        if (peliarena.key && peliarena.key == 40) {pelipala.nopeusY = nopeus; }
         //pelajan ja kuution päivitys
         peliesto.updaid();
         pelipala.newpai();
