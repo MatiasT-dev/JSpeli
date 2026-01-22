@@ -30,7 +30,7 @@
             peliarena.start();
             pelipala = new osansa(30, 30, "white", 10, 120);
             //peli alkaa ja kuutio alkavat levittä 
-            peliesto = new osansa(20, 20, "green", Math.floor(Math.random() * 480) + 9, Math.floor(Math.random() * 265) + 9);
+            peliesto = new osansa(20, 20, "green", Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
             
         }
 //pelin areena missä pelaja liikuu
@@ -74,6 +74,8 @@
             this.y += this.nopeusY;
             this.seinao();
             this.latia();
+            this.katto();
+            this.seinav();
         }
         
         //pelajan ja kuution törmäksen havaintoi koodi
@@ -109,6 +111,19 @@
                 this.y = latiaosu;
             }
         }
+        this.katto = function() {
+            var kattoosu = peliarena.canvas.height + this.height;
+            if (this.y < 0) {
+                this.y = 0;
+            }
+            
+        }
+        this.seinav = function() {
+            var seinavosu = peliarena.canvas.width + this.width;
+            if (this.x < 0) {
+                this.x = 0;
+            }
+        }
     }
 //pelin, pelajan ja kuution päivitäminen
     function paivitapelia() {
@@ -116,7 +131,7 @@
         if (pelipala.osu(peliesto)){
            lisaapiste();
             
-            peliesto = new osansa(20, 20, "green", Math.floor(Math.random() * 480) + 9, Math.floor(Math.random() * 265) + 9);
+            peliesto = new osansa(20, 20, "green", Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
         }
 
         
