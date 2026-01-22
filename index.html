@@ -82,7 +82,7 @@
             if ((munalas < senylos) ||
                (munylos > senalas) ||
                (munoike < senvase)||
-               (munvase > senoike)) { osunut = false;
+               (munvase > senoike)) { lisaapiste();
             }
             return osunut;
         }
@@ -91,10 +91,7 @@
     function paivitapelia() {
         if (pelipala.osu(peliesto)){
            console.log("piste")
-        } else {
-             lisaapiste();
         }
-        
         peliarena.clear();
         pelipala.nopeusX = 0;
         pelipala.nopeusY = 0;
