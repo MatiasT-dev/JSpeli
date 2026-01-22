@@ -96,14 +96,14 @@
             return osunut;
         }
 
-        this.seinao() = function() {
+        this.seinao = function() {
             var seinaosu = peliarena.canvas.width - this.width;
             if (this.x > seinaosu) {
                 this.x = seinaosu;
             }
         
         }
-        this.latia() = function() {
+        this.latia = function() {
             var latiaosu = peliarena.canvas.height - this.height;
             if (this.y > latiaosu) {
                 this.y = latiaosu;
