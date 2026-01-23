@@ -140,10 +140,10 @@
         // liikuminen nuoli laskimilla
         pelipala.nopeusX = 0;
         pelipala.nopeusY = 0;
-        if (peliarena.key && peliarena.key == 37) {pelipala.nopeusX = -nopeus; }
-        if (peliarena.key && peliarena.key == 39) {pelipala.nopeusX = nopeus; }
-        if (peliarena.key && peliarena.key == 38) {pelipala.nopeusY = -nopeus; }
-        if (peliarena.key && peliarena.key == 40) {pelipala.nopeusY = nopeus; }
+        if (peliarena.key && peliarena.key == 37) {pelipala.nopeusX += -nopeus; }
+        if (peliarena.key && peliarena.key == 39) {pelipala.nopeusX += nopeus; }
+        if (peliarena.key && peliarena.key == 38) {pelipala.nopeusY += -nopeus; }
+        if (peliarena.key && peliarena.key == 40) {pelipala.nopeusY += nopeus; }
         //pelajan ja kuution päivitys
         peliesto.updaid();
         pelipala.newpai();
