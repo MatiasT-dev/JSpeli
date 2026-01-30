@@ -1,15 +1,20 @@
+
+
         let nopeus = 0.5;
         let piste = 0;
         
+        
+
         var pelipala;
+        var pelipiste;
         var peliesto;
 // aloitaa pelin
         function aloitapeli() {
             peliarena.start();
             pelipala = new osansa(30, 30, "white", 10, 120);
             //peli alkaa ja kuutio alkavat levittä 
-            peliesto = new osansa(20, 20, "green", Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
-            
+            pelipiste = new osansa(20, 20, "green", Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
+            peliesto = new osansa(20, 20, "red",Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
         }
 //pelin areena missä pelaja liikuu
         var peliarena = {
@@ -106,14 +111,16 @@
 //pelin, pelajan ja kuution päivitäminen
     function paivitapelia() {
         //kun pelaja kostkee kuution niin kuutio vaihtaa paikaa ja pelaja saa pisteen
-        if (pelipala.osu(peliesto)){
+        if (pelipala.osu(pelipiste)){
            lisaapiste();
-            
-            peliesto = new osansa(20, 20, "green", Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
+            pelipiste = new osansa(20, 20, "green", Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
             nopeus += 0.5;
         }
-        if (nopeus >= 15) {
-            nopeus = 15;
+        
+        if (pelipala.osu(peliesto)){
+            pienenapiste();
+            peliesto = new osansa(20, 20, "red",Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
+            nopeus -= 1;
         }
 
         
@@ -126,13 +133,16 @@
         if (peliarena.key && peliarena.key == 38) {pelipala.nopeusY += -nopeus; }
         if (peliarena.key && peliarena.key == 40) {pelipala.nopeusY += nopeus; }
         //pelajan ja kuution päivitys
+        pelipiste.updaid();
         peliesto.updaid();
         pelipala.newpai();
         pelipala.updaid();
+        
     }
         //pisten päivityksen
         function paivitapiste() {
             document.getElementById("piste").innerHTML = piste;
+            document.getElementById("nopeus").innerHTML = nopeus;
         }
         //lisää pisteitä
         function lisaapiste() {
@@ -147,7 +157,7 @@
         //pisteiden aloitaa alusta
         function resepiste() {
         piste = 0;
-        nopeus = 0.15;
+        nopeus = 0.5;
         paivitapiste();
         }
         //pisteiden talentamiseen
