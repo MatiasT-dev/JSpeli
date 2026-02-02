@@ -121,6 +121,7 @@
             pienenapiste();
             peliesto = new osansa(20, 20, "red",Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
             nopeus -= 1;
+            piste += 0.5;
         }
 
         
