@@ -13,10 +13,10 @@
             peliarena.start();
             pelipala = new osansa(30, 30, "white", 10, 120);
             //peli alkaa ja kuutio alkavat levittä 
-            pelipiste = new osansa(20, 20, "green", Math.floor(Math.random() * 460) + 20, Math.floor(Math.random() * 255) + 20);
-            peliesto = new osansa(20, 20, "red",Math.floor(Math.random() * 460) + 20, Math.floor(Math.random() * 255) + 20);
+            pelipiste = new osansa(20, 20, "green", Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
+            peliesto = new osansa(20, 20, "red",Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
                 
-        pelinloppu = new osansa(20, 20, "blue", 460, 255);
+        pelinloppu = new osansa(20, 20, "blue",Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
         }
 //pelin areena missä pelaja liikuu
         var peliarena = {
@@ -115,24 +115,27 @@
         //kun pelaja kostkee kuution niin kuutio vaihtaa paikaa ja pelaja saa pisteen
         if (pelipala.osu(pelipiste)){
            lisaapiste();
-            pelipiste = new osansa(20, 20, "green", Math.floor(Math.random() * 460) + 20, Math.floor(Math.random() * 255) + 20);
+            pelipiste = new osansa(20, 20, "green", Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
             nopeus += 0.5;
         }
         
         if (pelipala.osu(peliesto)){
             pienenapiste();
-            peliesto = new osansa(20, 20, "red",Math.floor(Math.random() * 460) + 20, Math.floor(Math.random() * 255) + 20);
+            peliesto = new osansa(20, 20, "red",Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
             nopeus -= 1;
             piste += 0.5;
         } 
             if (pelipala.osu(pelinloppu) && piste > 50){
-                resepiste();
+                pelinloppu = new osansa(20, 20, "red",Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
+                pienenapiste();
         }
             
 
         
         peliarena.clear();
         // liikuminen nuoli laskimilla
+        pelinloppu.x += pelipala.x + 1;
+        pelinloppu.y += pelipala.y + 1;
         pelipala.nopeusX = 0;
         pelipala.nopeusY = 0;
         if (peliarena.key && peliarena.key == 37) {pelipala.nopeusX += -nopeus; }
@@ -144,6 +147,7 @@
         peliesto.updaid();
         pelipala.newpai();
         pelipala.updaid();
+        
         if (piste > 50){
         pelinloppu.updaid();
         }
