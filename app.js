@@ -125,7 +125,7 @@
             nopeus -= 1;
             piste += 0.5;
         } 
-            if (pelipala.osu(pelinloppu)){
+            if (pelipala.osu(pelinloppu) && piste > 50){
                 resepiste();
         }
             
