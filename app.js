@@ -134,8 +134,8 @@
         
         peliarena.clear();
         // liikuminen nuoli laskimilla
-        pelinloppu.x += pelipala.x + 1;
-        pelinloppu.y += pelipala.y + 1;
+        pelinloppu.x += 1;
+        pelinloppu.y += 1;
         pelipala.nopeusX = 0;
         pelipala.nopeusY = 0;
         if (peliarena.key && peliarena.key == 37) {pelipala.nopeusX += -nopeus; }
