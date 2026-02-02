@@ -61,6 +61,11 @@
             this.katto();
             this.seinav();
         }
+            function gameover() {
+                    ctx = peliarena.context;
+                    ctx.font = "50px";
+                    ctx.filltext("Game over", 240, 135);
+            }
         
         //pelajan ja kuution törmäksen havaintoi koodi
         this.osu = function(toinenta) {
