@@ -15,7 +15,7 @@
             //peli alkaa ja kuutio alkavat levittä 
             pelipiste = new osansa(20, 20, "green", Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
             peliesto = new osansa(20, 20, "red",Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
-        pelinloppu = new osansa(20, 20, "red", 460, 255);
+        pelinloppu = new osansa(20, 20, "blue", 460, 255);
         }
 //pelin areena missä pelaja liikuu
         var peliarena = {
@@ -139,6 +139,7 @@
         peliesto.updaid();
         pelipala.newpai();
         pelipala.updaid();
+        pelinloppu.updaid();
         
     }
         //pisten päivityksen
