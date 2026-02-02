@@ -14,9 +14,8 @@
             pelipala = new osansa(30, 30, "white", 10, 120);
             //peli alkaa ja kuutio alkavat levittä 
             pelipiste = new osansa(20, 20, "green", Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
-            peliesto = new osansa(20, 20, "red",Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
-                
-        pelinloppu = new osansa(20, 20, "blue",Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
+            peliesto = new osansa(20, 20, "red", Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);        
+            pelinloppu = new osansa(20, 20, "blue", Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
         }
 //pelin areena missä pelaja liikuu
         var peliarena = {
@@ -125,9 +124,10 @@
             nopeus -= 1;
             piste += 0.5;
         } 
-            if (pelipala.osu(pelinloppu) && piste > 50){
-                pelinloppu = new osansa(20, 20, "red",Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
+            if (pelipala.osu(pelinloppu)){
                 pienenapiste();
+                pelinloppu = new osansa(20, 20, "blue",Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
+                
         }
             
 
@@ -147,10 +147,7 @@
         peliesto.updaid();
         pelipala.newpai();
         pelipala.updaid();
-        
-        if (piste > 50){
         pelinloppu.updaid();
-        }
     }
         //pisten päivityksen
         function paivitapiste() {
