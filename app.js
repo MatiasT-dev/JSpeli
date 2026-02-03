@@ -1,5 +1,4 @@
 
-
         let nopeus = 0.5;
         let piste = 0;
         
@@ -14,8 +13,9 @@
             pelipala = new osansa(30, 30, "white", 10, 120);
             //peli alkaa ja kuutio alkavat levittä 
             pelipiste = new osansa(20, 20, "green", Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
-            peliesto = new osansa(20, 20, "red", Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);        
+            peliesto = new osansa(20, 20, "red", Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);       
             pelinloppu = new osansa(20, 20, "blue", Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
+            
         }
 //pelin areena missä pelaja liikuu
         var peliarena = {
@@ -24,6 +24,7 @@
 
             this.canvas.width = 480;
             this.canvas.height = 270;
+            this.canvas.radius = 30;
             this.context = this.canvas.getContext("2d");
             document.body.insertBefore(this.canvas, document.body.childNodes[0]);
             this.interval = setInterval(paivitapelia, 20);
@@ -48,8 +49,14 @@
         this.nopeusY = 0;  
         this.x = x;
         this.y = y;
+        this.bouncs = 0.2;
+        this.bounces = 0.2;
+        this.bouncespeed = 0;
+        this.bouncsX = 0.2;
+        this.bouncesX = 0.2;
+        this.bouncespeedX = 0;
         this.updaid = function() {
-          ctx = peliarena.context;
+            ctx = peliarena.context;
          ctx.fillStyle = color;
          ctx.fillRect(this.x, this.y, this.width, this.height);
         }
@@ -61,11 +68,19 @@
             this.katto();
             this.seinav();
         }
-            function gameover() {
-                    ctx = peliarena.context;
-                    ctx.font = "50px";
-                    ctx.filltext("Game over", 240, 135);
-            }
+        this.newbontu = function(){
+            this.bouncespeed += this.bouncs;
+            this.bouncespeedX += this.bouncsX;
+
+            this.x += this.nopeusX + this.bouncespeedX;
+            this.y += this.nopeusY + this.bouncespeed;
+
+            this.seinaob();
+            this.latiab();
+            this.kattob();
+            this.seinavb();
+        }
+        
         
         //pelajan ja kuution törmäksen havaintoi koodi
         this.osu = function(toinenta) {
@@ -113,7 +128,55 @@
                 this.x = 0;
             }
         }
+
+        this.seinaob = function() {
+            var seinaosu = peliarena.canvas.width - this.width;
+            if (this.x > seinaosu) {
+                this.x = seinaosu;
+                this.bouncespeedX = -(this.bouncespeedX * this.bouncesX);
+                this.bouncsX = -this.bouncsX;
+                
+            }
+        
+        }
+        this.latiab = function() {
+            var latiaosu = peliarena.canvas.height - this.height;
+            if (this.y > latiaosu) {
+                this.y = latiaosu;
+                this.bouncespeed = -(this.bouncespeed * this.bounces);
+                this.bouncs = -this.bouncs;
+                
+            }
+        }
+        this.kattob = function() {
+            var kattoosu = peliarena.canvas.height + this.height;
+            if (this.y < 0) {
+                this.y = 0;
+                this.bouncespeed = -(this.bouncespeed * this.bounces);
+                this.bouncs = -this.bouncs;
+                
+            }
+            
+        }
+        this.seinavb = function() {
+            var seinavosu = peliarena.canvas.width + this.width;
+            if (this.x < 0) {
+                this.x = 0;
+                this.bouncespeedX = -(this.bouncespeedX * this.bouncesX);
+                this.bouncsX = -this.bouncsX;
+                
+            }
+        }
     }
+
+    /*function gameover() {
+                var ctx = peliarena.context;
+                ctx.font = "50px Arial";
+                ctx.fillStyle = "red";
+                ctx.fillText("Hello World",10,80);
+            }*/
+
+
 //pelin, pelajan ja kuution päivitäminen
     function paivitapelia() {
         //kun pelaja kostkee kuution niin kuutio vaihtaa paikaa ja pelaja saa pisteen
@@ -129,18 +192,20 @@
             nopeus -= 1;
             piste += 0.5;
         } 
-            if (pelipala.osu(pelinloppu)){
+            if (pelipala.osu(pelinloppu) && piste >= 25){
                 pienenapiste();
                 pelinloppu = new osansa(20, 20, "blue",Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
                 
+        }if (piste <= 0) {
+            gameover();
         }
             
 
         
         peliarena.clear();
         // liikuminen nuoli laskimilla
-        pelinloppu.x += 1;
-        pelinloppu.y += 1;
+        pelinloppu.nopeusX = 0;
+        pelinloppu.nopeusX = 0;
         pelipala.nopeusX = 0;
         pelipala.nopeusY = 0;
         if (peliarena.key && peliarena.key == 37) {pelipala.nopeusX += -nopeus; }
@@ -152,7 +217,11 @@
         peliesto.updaid();
         pelipala.newpai();
         pelipala.updaid();
+
+        if (piste >= 25){
         pelinloppu.updaid();
+        pelinloppu.newbontu();
+        }
     }
         //pisten päivityksen
         function paivitapiste() {
@@ -176,6 +245,7 @@
         pelipala = new osansa(30, 30, "white", 10, 120);
         pelipiste = new osansa(20, 20, "green", Math.floor(Math.random() * 460) + 20, Math.floor(Math.random() * 255) + 20);
         peliesto = new osansa(20, 20, "red",Math.floor(Math.random() * 460) + 20, Math.floor(Math.random() * 255) + 20);
+        pelinloppu = new osansa(20, 20, "blue",Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
         paivitapiste();
         }
         //pisteiden talentamiseen
