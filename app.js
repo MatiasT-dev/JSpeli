@@ -205,7 +205,7 @@
         } 
             if (pelipala.osu(pelinloppu) && piste >= 25){
                 pienenapiste();
-                pelinloppu = new osansa(20, 20, "blue",Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
+                //pelinloppu = new osansa(20, 20, "blue",Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
                 
         }
         //lisää game over ruutu ja pysäytää pelin
