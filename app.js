@@ -17,7 +17,7 @@
             peliesto = new osansa(20, 20, "red", Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);       
             pelinloppu = new osansa(20, 20, "blue", Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
         
-            peliohi = new osansa("50px", "Consolas", "white", 180, 135, "text");    
+            peliohi = new osansa("50px", "Consolas", "white", 130, 135, "text");    
             
             
         }
@@ -114,7 +114,7 @@
             }
             return osunut;
         }
-
+//pelaja osuu seiniin, latian ja katoon
         this.seinao = function() {
             var seinaosu = peliarena.canvas.width - this.width;
             if (this.x > seinaosu) {
@@ -141,7 +141,7 @@
                 this.x = 0;
             }
         }
-
+        //piste hypii seiniä ja kattoa ja latiaa
         this.seinaob = function() {
             var seinaosu = peliarena.canvas.width - this.width;
             if (this.x > seinaosu) {
@@ -197,18 +197,26 @@
         if (pelipala.osu(peliesto)){
             pienenapiste();
             peliesto = new osansa(20, 20, "red",Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
-            nopeus -= 1;
             piste += 0.5;
+            if (nopeus > 1) {
+                    nopeus -= 1;
+                }
+            
         } 
             if (pelipala.osu(pelinloppu) && piste >= 25){
                 pienenapiste();
                 pelinloppu = new osansa(20, 20, "blue",Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
                 
         }
+        //lisää game over ruutu ja pysäytää pelin
          if (piste < 0){
         peliohi.text = "GAME OVER";
         peliohi.updaid();
-        peliarena.stop();        
+        pelipala = new osansa(30, 30, "black", 10, 120);
+        pelipiste = new osansa(20, 20, "black", Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
+        peliesto = new osansa(20, 20, "black", Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);       
+        pelinloppu = new osansa(20, 20, "black", Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);     
+        peliarena.stop();
         }else{   
 
         
@@ -260,6 +268,10 @@
         pelipiste = new osansa(20, 20, "green", Math.floor(Math.random() * 460) + 20, Math.floor(Math.random() * 255) + 20);
         peliesto = new osansa(20, 20, "red",Math.floor(Math.random() * 460) + 20, Math.floor(Math.random() * 255) + 20);
         pelinloppu = new osansa(20, 20, "blue",Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
+        pelipiste.updaid();
+        peliesto.updaid();
+        peliohi.updaid();
+        pelipala.updaid();
         paivitapiste();
         }
         //pisteiden talentamiseen
