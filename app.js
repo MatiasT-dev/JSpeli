@@ -17,7 +17,7 @@
             peliesto = new osansa(20, 20, "red", Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);       
             pelinloppu = new osansa(20, 20, "blue", Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
         
-            peliohi = new osansa("50px", "Consolas", "white", 240, 100, "text");    
+            peliohi = new osansa("50px", "Consolas", "white", 180, 135, "text");    
             
             
         }
@@ -205,7 +205,7 @@
                 pelinloppu = new osansa(20, 20, "blue",Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
                 
         }
-         if (piste <= 0){
+         if (piste < 0){
         peliohi.text = "GAME OVER";
         peliohi.updaid();
         peliarena.stop();        
