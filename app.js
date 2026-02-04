@@ -7,6 +7,7 @@
         var pelipala;
         var pelipiste;
         var peliesto;
+        var peliohi;
 // aloitaa pelin
         function aloitapeli() {
             peliarena.start();
@@ -15,6 +16,9 @@
             pelipiste = new osansa(20, 20, "green", Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
             peliesto = new osansa(20, 20, "red", Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);       
             pelinloppu = new osansa(20, 20, "blue", Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
+        
+            peliohi = new osansa("50px", "Consolas", "white", 240, 135, "text");    
+            
             
         }
 //pelin areena missä pelaja liikuu
@@ -37,12 +41,13 @@
         },
         clear : function() {
             this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        } 
+        }, stop : function() {}
     }
 
     
 //osat ja tasot
-    function osansa(width, height, color, x, y) {
+    function osansa(width, height, color, x, y, type) {
+        this.type = type;
         this.width = width;
         this.height = height;
         this.nopeusX = 0;
@@ -57,6 +62,12 @@
         this.bouncespeedX = 0;
         this.updaid = function() {
             ctx = peliarena.context;
+
+        if (this.type == "text") {
+        ctx.font = this.width + " " + this.height;
+        ctx.fillStyle = color;
+        ctx.fillText(this.text, this.x, this.y);
+        }
          ctx.fillStyle = color;
          ctx.fillRect(this.x, this.y, this.width, this.height);
         }
@@ -169,12 +180,7 @@
         }
     }
 
-    /*function gameover() {
-                var ctx = peliarena.context;
-                ctx.font = "50px Arial";
-                ctx.fillStyle = "red";
-                ctx.fillText("Hello World",10,80);
-            }*/
+   
 
 
 //pelin, pelajan ja kuution päivitäminen
@@ -196,8 +202,6 @@
                 pienenapiste();
                 pelinloppu = new osansa(20, 20, "blue",Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
                 
-        }if (piste <= 0) {
-            gameover();
         }
             
 
@@ -217,11 +221,13 @@
         peliesto.updaid();
         pelipala.newpai();
         pelipala.updaid();
-
+        peliohi.text = "GAME OVER";
+        peliohi.updaid();
         if (piste >= 25){
         pelinloppu.updaid();
         pelinloppu.newbontu();
         }
+        
     }
         //pisten päivityksen
         function paivitapiste() {
