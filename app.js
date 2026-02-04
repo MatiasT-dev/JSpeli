@@ -17,7 +17,7 @@
             peliesto = new osansa(20, 20, "red", Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);       
             pelinloppu = new osansa(20, 20, "blue", Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
         
-            peliohi = new osansa("50px", "Consolas", "white", 240, 135, "text");    
+            peliohi = new osansa("50px", "Consolas", "white", 240, 100, "text");    
             
             
         }
@@ -41,7 +41,9 @@
         },
         clear : function() {
             this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        }, stop : function() {}
+        }, stop : function() {
+                clearInterval(this.interval);
+        }
     }
 
     
@@ -203,7 +205,11 @@
                 pelinloppu = new osansa(20, 20, "blue",Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
                 
         }
-            
+         if (piste <= 0){
+        peliohi.text = "GAME OVER";
+        peliohi.updaid();
+        peliarena.stop();        
+        }else{   
 
         
         peliarena.clear();
@@ -217,17 +223,19 @@
         if (peliarena.key && peliarena.key == 38) {pelipala.nopeusY += -nopeus; }
         if (peliarena.key && peliarena.key == 40) {pelipala.nopeusY += nopeus; }
         //pelajan ja kuution päivitys
+        
+
+            
         pelipiste.updaid();
         peliesto.updaid();
         pelipala.newpai();
         pelipala.updaid();
-        peliohi.text = "GAME OVER";
-        peliohi.updaid();
+        
         if (piste >= 25){
         pelinloppu.updaid();
         pelinloppu.newbontu();
         }
-        
+        }
     }
         //pisten päivityksen
         function paivitapiste() {
