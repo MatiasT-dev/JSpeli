@@ -271,11 +271,11 @@
         paivitapiste();
         }
         //pisteiden talentamiseen
-        function talepistee() {
+       export function talepistee() {
             localStorage.setItem("piste", piste);
         }
         //pisteiden uudelen ladatumiseen viimeksi talentuksesta
-        function uudelenpistee() {
+        export function uudelenpistee() {
             let tale = localStorage.getItem("piste");
             if (tale !== null) {
                 piste = Number(tale);
