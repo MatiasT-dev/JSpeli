@@ -1,7 +1,7 @@
 
         let nopeus = 0.5;
         let piste = 0;
-        
+        let talpiste = 0;
         
         var pelinloppu;
         var pelipala;
@@ -259,6 +259,13 @@
     }
 
         function talenatpisteetaulu(){
+                if (talepiste <= piste){
+                    talepiste = piste;    
+                }else{
+                        talepiste = talepiste;
+                }
+
+                
         document.getElementById("tpiste").innerHTML = piste; 
         
         }
