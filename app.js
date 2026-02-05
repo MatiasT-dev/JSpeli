@@ -248,6 +248,12 @@
         }
         }
     }
+
+        function talenatpisteetaulu(){
+         
+        document.getElementById("tpiste").innerHTML = piste; 
+        
+        }
         //pisten päivityksen
         function paivitapiste() {
             document.getElementById("piste").innerHTML = piste;
