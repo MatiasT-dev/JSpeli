@@ -259,14 +259,8 @@
     }
 
         function talenatpisteetaulu(){
-                if (talepiste <= piste){
-                    talepiste = piste;    
-                }else{
-                        talepiste = talepiste;
-                }
-
                 
-        document.getElementById("tpiste").innerHTML = piste; 
+        document.getElementById("tpiste").innerHTML = talpiste; 
         
         }
         //pisten päivityksen
@@ -278,6 +272,13 @@
         function lisaapiste() {
         piste++;
         paivitapiste();
+
+        if (talpiste <= piste){
+                talpiste = piste;    
+        }else{
+                talpiste = talpiste;
+        }
+        
         talenatpisteetaulu();
         }
         //pisteen vähetäminen
@@ -296,13 +297,13 @@
         //pisteiden talentamiseen
 
         function scorepistetal() {
-          localStorage.setItem("tpiste", piste);      
+          localStorage.setItem("tpiste", talpiste);      
         }
 
         function scorepisteudel() {
-         let tale = localStorage.getItem("piste");
+         let tale = localStorage.getItem("talepiste");
             if (tale !== null) {
-                piste = Number(tale);
+                talpiste = Number(tale);
             }
             talenatpisteetaulu();    
         }
