@@ -93,6 +93,14 @@
             this.kattob();
             this.seinavb();
         }
+            
+        this.newkimo = function(){
+         this.bouncespeedX += this.bouncsX;
+        this.x += this.nopeusX + this.bouncespeedX;
+        this.seinaob();
+        this.seinavb();       
+        }
+
         
         
         //pelajan ja kuution törmäksen havaintoi koodi
@@ -205,7 +213,7 @@
         } 
             if (pelipala.osu(pelinloppu) && piste >= 25){
                 pienenapiste();
-                //pelinloppu = new osansa(20, 20, "blue",Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
+                
                 
         }
         //lisää game over ruutu ja pysäytää pelin
@@ -241,7 +249,8 @@
         peliesto.updaid();
         pelipala.newpai();
         pelipala.updaid();
-        
+        peliesto.newkimo();
+                 
         if (piste >= 25){
         pelinloppu.updaid();
         pelinloppu.newbontu();
@@ -250,7 +259,6 @@
     }
 
         function talenatpisteetaulu(){
-         
         document.getElementById("tpiste").innerHTML = piste; 
         
         }
@@ -283,6 +291,7 @@
         function scorepistetal() {
           localStorage.setItem("tpiste", piste);      
         }
+
         function scorepisteudel() {
          let tale = localStorage.getItem("piste");
             if (tale !== null) {
