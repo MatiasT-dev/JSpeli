@@ -261,8 +261,9 @@
         }
         //lisää pisteitä
         function lisaapiste() {
-            piste++;
-            paivitapiste();
+        piste++;
+        paivitapiste();
+        talenatpisteetaulu();
         }
         //pisteen vähetäminen
         function pienenapiste() {
@@ -271,7 +272,6 @@
         }
         //pisteiden aloitaa alusta
         function resepiste() {
-        talenatpisteetaulu();
         piste = 0;
         nopeus = 0.5;
         aloitapeli();
@@ -279,6 +279,19 @@
         
         }
         //pisteiden talentamiseen
+
+        function scorepistetal() {
+          localStorage.setItem("tpiste", piste);      
+        }
+        function scorepisteudel() {
+         let tale = localStorage.getItem("piste");
+            if (tale !== null) {
+                piste = Number(tale);
+            }
+            talenatpisteetaulu();    
+        }
+
+
        function talepistee() {
             localStorage.setItem("piste", piste);
         
@@ -290,4 +303,5 @@
                 piste = Number(tale);
             }
             paivitapiste();
+        
         }
