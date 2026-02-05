@@ -271,14 +271,17 @@
         }
         //pisteiden aloitaa alusta
         function resepiste() {
+        talenatpisteetaulu();
         piste = 0;
         nopeus = 0.5;
         aloitapeli();
         paivitapiste();
+        
         }
         //pisteiden talentamiseen
        function talepistee() {
             localStorage.setItem("piste", piste);
+        
         }
         //pisteiden uudelen ladatumiseen viimeksi talentuksesta
         function uudelenpistee() {
