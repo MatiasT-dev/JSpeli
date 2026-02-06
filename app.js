@@ -200,6 +200,9 @@
            lisaapiste();
             pelipiste = new osansa(20, 20, "green", Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
             nopeus += 0.5;
+        if (nopeus >= 15) {
+                nopeus = 15;
+        }
         }
         
         if (pelipala.osu(peliesto)){
@@ -207,18 +210,14 @@
             peliesto = new osansa(20, 20, "red",Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
                     if (talpiste > 30){
                        pienenapiste();
-                        pienenapiste();
-                            
+                        pienenapiste();       
                     }
-                
                 piste += 0.5;
             if (nopeus > 1) {
                     nopeus -= 1;
                 }
 
-        if (nopeus >= 15) {
-                nopeus = 15;
-        }
+        
                 
         } 
             if (pelipala.osu(pelinloppu) && piste >= 25){
