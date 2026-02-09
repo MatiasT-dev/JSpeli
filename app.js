@@ -1,8 +1,12 @@
 
-        let nopeus = 0.5;
+        let nopeus = 3;
         let piste = 0;
         let talpiste = 0;
-        
+        let healt = 5;
+
+        let nimet = "";
+        let score = [];
+
         var pelinloppu;
         var pelipala;
         var pelipiste;
@@ -56,11 +60,11 @@
         this.nopeusY = 0;  
         this.x = x;
         this.y = y;
-        this.bouncs = 0.2;
-        this.bounces = 0.2;
+        this.bouncs = 0.09;
+        this.bounces = 0.09;
         this.bouncespeed = 0;
-        this.bouncsX = 0.2;
-        this.bouncesX = 0.2;
+        this.bouncsX = 0.09;
+        this.bouncesX = 0.09;
         this.bouncespeedX = 0;
         this.updaid = function() {
             ctx = peliarena.context;
@@ -199,34 +203,31 @@
         if (pelipala.osu(pelipiste)){
            lisaapiste();
             pelipiste = new osansa(20, 20, "green", Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
-            nopeus += 0.5;
+            nopeus += 1;
         if (nopeus >= 15) {
                 nopeus = 15;
         }
         }
         
         if (pelipala.osu(peliesto)){
-            pienenapiste();
+            healt--;
             peliesto = new osansa(20, 20, "red",Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
-                    if (talpiste > 30){
-                       pienenapiste();
-                        pienenapiste();       
-                    }
-                piste += 0.5;
-            if (nopeus > 1) {
-                    nopeus -= 1;
-                }
+                       
+           
 
         
                 
         } 
             if (pelipala.osu(pelinloppu) && piste >= 25){
-                pienenapiste();
+                healt--;
+                pelinloppu = new osansa(20, 20, "blue", Math.floor(Math.random() * 460) + 9, Math.floor(Math.random() * 255) + 9);
+
+
                 
                 
         }
         //lisää game over ruutu ja pysäytää pelin
-         if (piste < 0){
+         if (healt <= 0){
         peliohi.text = "GAME OVER";
         peliohi.updaid();
         pelipala = new osansa(30, 30, "black", 10, 120);
@@ -237,6 +238,7 @@
         peliesto.updaid();
         pelipala.updaid();
         peliarena.stop();
+        addleaderborde();
         }else{   
 
         
@@ -269,9 +271,11 @@
 
         function talenatpisteetaulu(){
                 
-        document.getElementById("tpiste").innerHTML = talpiste; 
+            document.getElementById("tpiste").innerHTML = talpiste; 
+        
         
         }
+
         //pisten päivityksen
         function paivitapiste() {
             document.getElementById("piste").innerHTML = piste;
@@ -298,11 +302,41 @@
         //pisteiden aloitaa alusta
         function resepiste() {
         piste = 0;
-        nopeus = 0.5;
+        nopeus = 3;
+        healt = 5;
         aloitapeli();
         paivitapiste();
         
         }
+
+        function laitanimi() {
+           nimet = document.getElementById("nime").value;
+           return nimet;
+        }
+        
+
+        function addleaderborde() {
+            
+            laitanimi();
+            score.push(piste);
+
+            var ul = document.getElementById('pisteet');
+
+
+            
+                
+            var li = document.createElement('li');
+                ul.appendChild(li);
+                li.innerHTML = li.innerHTML + nimet + ":" + " " + piste;
+                
+            
+
+            
+        }
+        
+        
+
+
         //pisteiden talentamiseen
 
         function scorepistetal() {
@@ -310,7 +344,7 @@
         }
 
         function scorepisteudel() {
-         let tale = localStorage.getItem("talepiste");
+         let tale = localStorage.getItem("tpiste");
             if (tale !== null) {
                 talpiste = Number(tale);
             }
