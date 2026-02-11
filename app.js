@@ -324,15 +324,28 @@
 
 
             
-                
+            if (nimet == ""){ 
+                return false;
+
+            }else{    
             var li = document.createElement('li');
                 ul.appendChild(li);
+                li.value = piste;
                 li.innerHTML = li.innerHTML + nimet + ":" + " " + piste;
                 
+                if (li.value > document.getElementById('li').value){
+                    li.parentNode.insertBefore(li.childNodes, li.childNodes);
+                }
+
+
+                }
+            
+            
+            }
             
 
             
-        }
+        
         
         
 
